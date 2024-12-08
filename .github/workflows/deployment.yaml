@@ -25,3 +25,11 @@ jobs:
         with:
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_PASSWORD}}
+      - name: Build ,tag & push image to dockerhub
+        id: Build-Image
+        env:
+          IMAGE_TAG: ${{github.sha}}
+        run: |
+          docker build -t srinath1975/store-app:$IMAGE_TAG .
+          docker push srinath1975/store-app:$IMAGE_TAG
+          echo "::set-output name=image::srinath1975/store-app:$IMAGE_TAG"
