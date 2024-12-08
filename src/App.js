@@ -55,7 +55,7 @@ function App() {
           fontFamily="Robo"
           my="5px"
         >
-          Denmark Bakery@v6
+          Denmark Bakery@v7
         </Text>
 
         <Checkout order={order} />
