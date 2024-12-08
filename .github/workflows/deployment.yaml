@@ -33,3 +33,11 @@ jobs:
           docker build -t srinath1975/store-app:$IMAGE_TAG .
           docker push srinath1975/store-app:$IMAGE_TAG
           echo "::set-output name=image::srinath1975/store-app:$IMAGE_TAG"
+      - name: Install Kubectl
+        uses: azure/setup-kubectl@v1
+
+      - name: Update Kubectl Context
+        run: aws eks update-kubeconfig --name beautiful-unicorn-1733575517 --region us-east-1
+      - name: Deploy Image to Amazon
+        run: |
+          kubectl set image deployment/store store={{steps.build-image.outputs.image}}
