@@ -41,7 +41,7 @@ jobs:
         uses: azure/setup-kubectl@v1
 
       - name: Update Kubectl Context
-        run: "https://us-east-1.console.aws.amazon.com/eks/home?region=us-east-1#/clusters/beautiful-unicorn-1733575517"
+        run: aws eks update-kubeconfig --name beautiful-unicorn-1733575517 --region us-east-1
 
       - name: Deploy Image to Amazon EKS
         run: |
